@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С 8 Марта! Видеопоздравление</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blush: #f2a7b0;
+    --rose: #e05b7a;
+    --deep: #7b1e3a;
+    --cream: #fdf6f0;
+    --gold: #c9a84c;
+    --soft: #fce4ec;
+  }
+
+  body {
+    background: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Falling petals */
+  .petals-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .petal {
+    position: absolute;
+    top: -60px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.8; }
+    50%  { transform: translateY(50vh) rotate(180deg) translateX(30px); opacity: 0.6; }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(-20px); opacity: 0; }
+  }
+
+  /* Card */
+  .card {
+    position: relative;
+    z-index: 10;
+    width: min(90vw, 560px);  /* чуть шире для видео */
+    background: linear-gradient(145deg, #fff8f9 0%, #fff0f3 60%, #fce4ec 100%);
+    border-radius: 4px;
+    padding: 40px 32px 36px;
+    box-shadow:
+      0 2px 4px rgba(224,91,122,0.08),
+      0 8px 32px rgba(123,30,58,0.12),
+      0 32px 80px rgba(123,30,58,0.08),
+      inset 0 0 0 1px rgba(201,168,76,0.2);
+    text-align: center;
+    animation: cardIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Decorative corner lines */
+  .card::before, .card::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.5;
+  }
+  .card::before { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+  .card::after  { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
+
+  .date-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s 0.3s both;
+  }
+
+  .flower-row {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    animation: fadeUp 0.8s 0.5s both;
+    filter: drop-shadow(0 2px 8px rgba(224,91,122,0.3));
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    animation: fadeUp 0.8s 0.6s both;
+    background: linear-gradient(135deg, var(--deep) 0%, var(--rose) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--rose);
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.75s both;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.85s both;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--blush), transparent);
+  }
+  .divider span { color: var(--rose); font-size: 1.1rem; }
+
+  /* ———— ВИДЕО КОНТЕЙНЕР С ЛОКАЛЬНЫМ ВИДЕО ———— */
+  .video-wrapper {
+    width: 100%;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 1s both;
+    border: 1px solid rgba(201,168,76,0.3);
+    box-shadow: 0 8px 24px rgba(123,30,58,0.1);
+    background: #fae1e8; /* нежный фон под видео */
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  /* Стили для HTML5 видео */
+  .video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #fae1e8;
+  }
+
+  .signature {
+    margin-top: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--gold);
+    animation: fadeUp 0.8s 1.2s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hearts burst on click (убрали кнопку, но эффект можно оставить для другого триггера, 
+     однако раз кнопка удалена, то и скрипт с сердцами можно убрать или оставить как есть — он не вызовется) */
+  .burst {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+    font-size: 1.5rem;
+    animation: burst 1s forwards;
+  }
+  @keyframes burst {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(0); }
+    50%  { opacity: 1; transform: translate(-50%, -70px) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -120px) scale(0.8); }
+  }
+</style>
+</head>
+<body>
+
+<div class="petals-bg" id="petals"></div>
+
+<div class="card">
+  <div class="date-tag">8 марта · International Women's Day</div>
+  <div class="flower-row">🌸 🌷 🌸</div>
+  <h1>С 8 Марта!</h1>
+  <div class="subtitle">С Международным женским днём</div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- ВИДЕО КОНТЕЙНЕР С ЛОКАЛЬНЫМ ФАЙЛОМ -->
+  <div class="video-wrapper">
+    <!-- 
+      ЗДЕСЬ ВСТАВЬТЕ ПУТЬ К ВАШЕМУ ЛОКАЛЬНОМУ ВИДЕОФАЙЛУ.
+      Например: 
+        - Если видео лежит в той же папке, что и HTML: src="pozdravlenie.mp4"
+        - Если в подпапке video: src="video/pozdravlenie.mp4"
+        - Можно также использовать ссылку на прямой файл, но не YouTube.
+    -->
+    <video controls autoplay loop muted playsinline>
+      <source src="output_400x400.mp4" type="video/mp4">
+      <!-- Если нужно добавить другие форматы (WebM, Ogg) -->
+      <!-- <source src="pozdravlenie.webm" type="video/webm"> -->
+      Ваш браузер не поддерживает встроенное видео. 
+      <a href="output_400x400.mp4">Скачайте видео</a>, чтобы посмотреть поздравление.
+    </video>
+  </div>
+
+  <!-- Подпись внизу (оставили, но без лишних цветочков) -->
+  <div class="signature">С любовью ♡</div>
+
+  <!-- Кнопка и пояснительный текст ПОЛНОСТЬЮ УДАЛЕНЫ -->
+  
+</div>
+
+<script>
+  // Falling petals (оставляем для атмосферы)
+  const petalsContainer = document.getElementById('petals');
+  const emojis = ['🌸','🌷','💮','🌺','🍀','✿','❀'];
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (6 + Math.random() * 8) + 's';
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    p.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+    petalsContainer.appendChild(p);
+  }
+
+  // Код для кнопки УДАЛЕН, так как кнопки больше нет
+</script>
+
+<!-- Инструкция: 
+     1. Положите ваш видеофайл (например, pozdravlenie.mp4) в папку "video" рядом с этим HTML-файлом.
+     2. Или измените путь в атрибуте src тега <source> на правильный.
+     3. Видео будет проигрываться автоматически (autoplay), зациклено (loop), без звука (muted) — это требование современных браузеров для автозапуска.
+     4. Если хотите со звуком, уберите muted, но тогда автозапуск может не сработать.
+-->
+</body>
+</html>
